@@ -7,7 +7,7 @@ import cmath
 # construct the argument parse
 parser = argparse.ArgumentParser()
 # parser.add_argument("--video", help="path to video file. If empty, camera's stream will be used")
-parser.add_argument("--video", default='video_001.avi')
+parser.add_argument("--video", default=0)
 parser.add_argument("--prototxt", default="MobileNetSSD_deploy.prototxt")
 parser.add_argument("--weights", default="MobileNetSSD_deploy.caffemodel")
 parser.add_argument("--thr", default=0.2, type=float, help="confidence")
@@ -29,6 +29,8 @@ if args.video:
 
 else:
     cap = cv2.VideoCapture(1)
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 300)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 300)
     cap.set(cv2.CAP_PROP_FPS, 25)
 
 # Load the Caffe model
